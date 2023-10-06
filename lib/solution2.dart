@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 class Solution2 extends StatefulWidget {
   const Solution2({Key? key}) : super(key: key);
@@ -12,13 +13,19 @@ class Solution2 extends StatefulWidget {
 class Solution2State extends State<Solution2> {
   double posx = 0;
   double posy = 0;
+  final BoxHitTestResult result = BoxHitTestResult();
 
   void onTapDown(BuildContext context, TapDownDetails details) {
     final RenderBox box = context.findRenderObject() as RenderBox;
+
     final Offset localOffset = box.globalToLocal(details.globalPosition);
     setState(() {
+      print(box.hitTest(result,
+          position: Offset(localOffset.dx, localOffset.dy)));
       posx = localOffset.dx;
       posy = localOffset.dy;
+      print(result.path.last.target.runtimeType);
+      print(result.path.last.target);
     });
   }
 
@@ -41,6 +48,10 @@ class Solution2State extends State<Solution2> {
                   textAlign: TextAlign.left,
                   style: const TextStyle(fontSize: 24, color: Colors.black),
                 ),
+                Container(
+                    width: 50,
+                    height: 50,
+                    decoration: BoxDecoration(color: Colors.red)),
               ],
             ),
           ),

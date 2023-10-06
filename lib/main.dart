@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:user_log_study/solution1.dart';
 import 'package:user_log_study/solution2.dart';
+import 'package:user_log_study/solution3.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.amber,
       ),
-      home: const Solution1(),
+      home: const Solution3(),
     );
   }
 }
